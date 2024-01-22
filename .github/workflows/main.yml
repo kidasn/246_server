@@ -23,7 +23,7 @@ jobs:
         password: ${{ secrets.PASSWORD }}
         port: 22
         script: |
-          cd /var/www/project5/Server_Project_5
+          cd /var/www/246_md5_project/246_server
           git pull
           . $HOME/.nvm/nvm.sh
           nvm use
@@ -33,7 +33,6 @@ jobs:
           sed -i 's/PROTOCOL_TYPE/https:\/\//g' .env        
           npm ci
           npm run build
-          sudo swampoff -a; sudo swapon -a
           pm2 delete all
           pm2 start dist/main.js
           curl -X POST -H "Content-Type: application/json" -H "Authorization: ${{ secrets.DISCORD_TOKEN }}" -d '{"content":"Dự án node js đã deploy thành công link: https://api.mmoshop.site/ "}' ${{ secrets.DISCORD_URL }}
